@@ -170,3 +170,33 @@ The following steps will be automated in future script releases:
 - [Azure CLI Documentation](https://docs.microsoft.com/en-us/cli/azure/)
 - [Azure ARM Templates](https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/)
 - [Complete Automation Plan](plans/azure-migrate-lab-automation-plan.md) 
+
+## Manual Steps After Project Creation
+
+After running the create-migrate-project script, follow these steps to import server inventory via CSV:
+
+1. **Access the Azure Migrate Project**:
+   - Use the portal URL provided by the script. The URL follows this format:
+   ```
+   portal.azure.com/#view/Microsoft_Azure_Migrate/AmhResourceMenuBlade/~/serverGoal/resourceId/%2Fsubscriptions%2F{SUBSCRIPTION_ID}%2FresourceGroups%2F{RESOURCE_GROUP}%2Fproviders%2FMicrosoft.Migrate%2FMigrateProjects%2F{MIGRATE_PROJECT_NAME}
+   ```
+   Where:
+   - `{SUBSCRIPTION_ID}`: Your Azure Subscription ID
+   - `{RESOURCE_GROUP}`: Your Resource Group name
+   - `{MIGRATE_PROJECT_NAME}`: Your Azure Migrate project name
+
+2. **Add Assessment Tool**:
+   - In the Azure Migrate project page, find the "Add more assessment tools?" question
+   - Click "Click here" to add a new assessment tool
+   - Select "Azure Migrate: Discovery and assessment"
+
+3. **Import Server Inventory**:
+   - In "Migration goals" > "Servers, databases and web apps" > "Azure Migrate: Discovery and assessment", select "Discover"
+   - Choose "Server Inventory (CSV)" as the File type
+   - In step 3 of the wizard, import the sample CSV file from `./samples/AzureMigrateimporttemplate.csv`
+
+4. **View Imported Servers**:
+   - Return to the Azure Migrate project
+   - Navigate to "Migration Goals" > "Servers, databases and web apps"
+   - Under "Azure Migrate: Discovery and assessment", you should see 10 servers that were imported
+   - Click the "10" to see the detailed list of imported servers under the "Import based" tab 
